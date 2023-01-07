@@ -1,3 +1,5 @@
+import SoundControl from "./components/SoundControl";
+
 function App() {
   return (
     <div>
