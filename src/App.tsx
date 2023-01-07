@@ -5,6 +5,7 @@ function App() {
   return (
     <div>
       <PlayerVertical />
+      <PlayerHorizontal barWidthPercent={40} />
       <PlayerHorizontal />
     </div>
   );

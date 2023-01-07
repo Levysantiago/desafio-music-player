@@ -7,6 +7,8 @@ import {
   Container,
   ImageContainer,
   SongTitle,
+  SoundControlContainer,
+  SoundProgressContainer,
 } from "./styles";
 
 const PlayerVertical: React.FC = () => {
@@ -24,15 +26,19 @@ const PlayerVertical: React.FC = () => {
       <SongTitle>Acorda Devinho</SongTitle>
       <BandTitle>Banda Rocketseat</BandTitle>
 
-      {/* SOUND CONTROL */}
-      <SoundControl />
+      <SoundControlContainer>
+        {/* SOUND CONTROL */}
+        <SoundControl />
+      </SoundControlContainer>
 
       {/* PROGRESS */}
-      <SoundProgress
-        barWidthPercent={40}
-        leftCounter="03:20"
-        rightCounter="00:12"
-      />
+      <SoundProgressContainer>
+        <SoundProgress
+          barWidthPercent={40}
+          leftCounter="03:20"
+          rightCounter="00:12"
+        />
+      </SoundProgressContainer>
     </Container>
   );
 };

@@ -4,14 +4,21 @@ import SoundProgress from "../SoundProgress";
 import {
   AlbumImg,
   BandTitle,
-  Centralize,
   Container,
   ImageTitlesContainer,
   SongTitle,
+  SoundControlContainer,
+  SoundProgressContainer,
   TitlesContainer,
 } from "./styles";
 
-const PlayerHorizontal: React.FC = () => {
+interface IProps {
+  barWidthPercent?: number;
+}
+
+const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
+  const { barWidthPercent } = props;
+
   return (
     <Container>
       <ImageTitlesContainer>
@@ -28,16 +35,20 @@ const PlayerHorizontal: React.FC = () => {
       </ImageTitlesContainer>
 
       {/* SOUND CONTROL */}
-      <Centralize>
+      <SoundControlContainer>
         <SoundControl />
-      </Centralize>
+      </SoundControlContainer>
 
       {/* PROGRESS */}
-      <SoundProgress
-        barWidthPercent={40}
-        leftCounter="03:20"
-        rightCounter="00:12"
-      />
+      {barWidthPercent ? (
+        <SoundProgressContainer>
+          <SoundProgress
+            barWidthPercent={barWidthPercent || 100}
+            leftCounter="03:20"
+            rightCounter="00:12"
+          />
+        </SoundProgressContainer>
+      ) : null}
     </Container>
   );
 };

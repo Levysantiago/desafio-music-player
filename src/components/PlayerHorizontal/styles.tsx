@@ -4,7 +4,6 @@ export const Container = styled.div`
   background-color: #2a2141;
   padding: 50px 38px;
   width: 300px;
-  height: 200px;
   border-radius: 9.6px;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@ export const Container = styled.div`
 export const ImageTitlesContainer = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 export const TitlesContainer = styled.div`
@@ -27,10 +27,14 @@ export const AlbumImg = styled.img`
   height: 80px;
 `;
 
-export const Centralize = styled.div`
+export const SoundControlContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+`;
+
+export const SoundProgressContainer = styled.div`
+  margin-top: 30px;
 `;
 
 export const SongTitle = styled.span`
