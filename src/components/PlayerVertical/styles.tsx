@@ -32,6 +32,6 @@ export const SongTitle = styled.span`
 export const BandTitle = styled.span`
   font-family: "Roboto-Regular";
   font-size: 20px;
-  color: #e1e1e6;
+  color: #a5a2b0;
   line-height: 0px;
 `;

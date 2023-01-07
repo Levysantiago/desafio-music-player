@@ -18,5 +18,6 @@ export const PlayBackIcon = styled.img.attrs({
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  max-width: 200px;
   justify-content: space-between;
 `;
