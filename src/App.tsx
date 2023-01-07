@@ -1,4 +1,5 @@
 import SoundControl from "./components/SoundControl";
+import SoundProgress from "./components/SoundProgress";
 
 function App() {
   return (
