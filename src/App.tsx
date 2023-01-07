@@ -1,10 +1,9 @@
-import SoundControl from "./components/SoundControl";
-import SoundProgress from "./components/SoundProgress";
+import PlayerVertical from "./components/PlayerVertical";
 
 function App() {
   return (
     <div>
-      <h1>Hello</h1>
+      <PlayerVertical />
     </div>
   );
 }
