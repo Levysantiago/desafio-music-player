@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const PlayIcon = styled.img.attrs({
-  src: require("../../assets/play.svg").default,
-  alt: "Play icon",
-})``;
+export const PlayIcon = styled.img``;
 
 export const PlayForwardIcon = styled.img.attrs({
   src: require("../../assets/play-forward.svg").default,

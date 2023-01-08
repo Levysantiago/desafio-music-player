@@ -1,5 +1,6 @@
 import React from "react";
-import SoundControl from "../SoundControl";
+import { ISong } from "../../App";
+import SoundControl, { ISoundControlProps } from "../SoundControl";
 import SoundProgress from "../SoundProgress";
 import {
   AlbumImg,
@@ -11,7 +12,13 @@ import {
   SoundProgressContainer,
 } from "./styles";
 
-const PlayerVertical: React.FC = () => {
+interface IProps extends ISoundControlProps {
+  song: ISong;
+}
+
+const PlayerVertical: React.FC<IProps> = (props: IProps) => {
+  const { song } = props;
+
   return (
     <Container>
       {/* IMAGE */}
@@ -23,12 +30,12 @@ const PlayerVertical: React.FC = () => {
       </ImageContainer>
 
       {/* TITLES */}
-      <SongTitle>Acorda Devinho</SongTitle>
-      <BandTitle>Banda Rocketseat</BandTitle>
+      <SongTitle>{song.title}</SongTitle>
+      <BandTitle>{`Banda ${song.bandTitle}`}</BandTitle>
 
       <SoundControlContainer>
         {/* SOUND CONTROL */}
-        <SoundControl />
+        <SoundControl {...props} />
       </SoundControlContainer>
 
       {/* PROGRESS */}
