@@ -1,5 +1,7 @@
 import React from "react";
 import { ISong } from "../../App";
+import { getSongProgressPercentage } from "../../helpers/get-song-progress-percentage";
+import { secondsToDuration } from "../../helpers/seconds-to-duration";
 import SoundControl, { ISoundControlProps } from "../SoundControl";
 import SoundProgress from "../SoundProgress";
 import {
@@ -14,10 +16,11 @@ import {
 
 interface IProps extends ISoundControlProps {
   song: ISong;
+  audioCurrentTime: string;
 }
 
 const PlayerVertical: React.FC<IProps> = (props: IProps) => {
-  const { song } = props;
+  const { song, audioCurrentTime, audio } = props;
 
   return (
     <Container>
@@ -41,9 +44,13 @@ const PlayerVertical: React.FC<IProps> = (props: IProps) => {
       {/* PROGRESS */}
       <SoundProgressContainer>
         <SoundProgress
-          barWidthPercent={40}
-          leftCounter="03:20"
-          rightCounter="00:12"
+          barWidthPercent={
+            audio
+              ? getSongProgressPercentage(audio.currentTime, audio.duration)
+              : 0
+          }
+          leftCounter={audioCurrentTime}
+          rightCounter={audio ? secondsToDuration(audio.duration) : "00:00"}
         />
       </SoundProgressContainer>
     </Container>

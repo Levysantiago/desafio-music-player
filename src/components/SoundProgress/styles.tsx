@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export interface IInsideBarProps {
-  barWidthPercent: number;
+  barWidthPercent: number | string;
 }
 
 export const BaseBar = styled.div`

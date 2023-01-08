@@ -2,7 +2,7 @@ import React from "react";
 import { BaseBar, Counter, CountersContainer, InsideBar } from "./styles";
 
 export interface IProps {
-  barWidthPercent: number;
+  barWidthPercent: number | string;
   leftCounter?: string;
   rightCounter?: string;
 }
@@ -19,8 +19,8 @@ const SoundProgress: React.FC<IProps> = (props: IProps) => {
       {/* Counters */}
       {leftCounter && rightCounter ? (
         <CountersContainer>
-          <Counter>13:00</Counter>
-          <Counter>13:00</Counter>
+          <Counter>{leftCounter}</Counter>
+          <Counter>{rightCounter}</Counter>
         </CountersContainer>
       ) : null}
     </div>
