@@ -23,6 +23,9 @@ function App() {
   const updateAudioCurrentTime = () => {
     if (audio) {
       setAudioCurrentTime(secondsToDuration(audio.currentTime));
+      if (audio.currentTime === audio.duration) {
+        nextSong();
+      }
     }
   };
 

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export interface IInsideBarProps {
-  barWidthPercent: number | string;
+  width: string;
 }
 
 export const BaseBar = styled.div`
@@ -14,14 +14,11 @@ export const BaseBar = styled.div`
   margin-bottom: 10px;
 `;
 
-export const InsideBar = styled.div(
-  (props: IInsideBarProps) => `
-  width: ${`${props.barWidthPercent}%` || "50%"};
+export const InsideBar = styled.div`
   height: 100%;
   border-radius: 100px;
-  background-color:#c1bfc4;
-`
-);
+  background-color: #c1bfc4;
+`;
 
 export const CountersContainer = styled.div`
   display: flex;

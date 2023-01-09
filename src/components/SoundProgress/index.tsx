@@ -13,7 +13,7 @@ const SoundProgress: React.FC<IProps> = (props: IProps) => {
     <div>
       {/* Progress Bar */}
       <BaseBar>
-        <InsideBar barWidthPercent={barWidthPercent} />
+        <InsideBar style={{ width: `${barWidthPercent}%` || "50%" }} />
       </BaseBar>
 
       {/* Counters */}
