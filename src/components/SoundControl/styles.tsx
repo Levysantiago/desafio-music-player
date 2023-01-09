@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 export const PlayIcon = styled.img`
   cursor: pointer;
+
+  @media (max-width: 300px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const PlayForwardIcon = styled.img.attrs({
@@ -9,6 +14,11 @@ export const PlayForwardIcon = styled.img.attrs({
   alt: "Play forward icon",
 })`
   cursor: pointer;
+
+  @media (max-width: 300px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const PlayBackIcon = styled.img.attrs({
@@ -16,6 +26,11 @@ export const PlayBackIcon = styled.img.attrs({
   alt: "Play back icon",
 })`
   cursor: pointer;
+
+  @media (max-width: 300px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
 
 export const Container = styled.div`

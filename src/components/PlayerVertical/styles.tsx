@@ -10,6 +10,11 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin: 10px 0px;
+
+  @media (max-width: 300px) {
+    width: 70%;
+    padding: 30px 28px;
+  }
 `;
 
 export const ImageContainer = styled.div`
@@ -28,12 +33,20 @@ export const SongTitle = styled.span`
   font-size: 24px;
   color: #e1e1e6;
   margin-top: 30px;
+
+  @media (max-width: 300px) {
+    font-size: 20px;
+  }
 `;
 
 export const BandTitle = styled.span`
   font-family: "Roboto-Regular";
   font-size: 20px;
   color: #a5a2b0;
+
+  @media (max-width: 300px) {
+    font-size: 18px;
+  }
 `;
 
 export const SoundControlContainer = styled.div`
