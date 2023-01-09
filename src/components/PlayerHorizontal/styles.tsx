@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #2a2141;
-  padding: 50px 38px;
+  padding: 30px 28px;
   width: 300px;
   border-radius: 9.6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin: 10px 0px;
+  margin: 15px 0px;
 
   @media (max-width: 380px) {
     width: 80%;
@@ -16,7 +16,6 @@ export const Container = styled.div`
 
   @media (max-width: 300px) {
     width: 70%;
-    padding: 30px 28px;
   }
 `;
 

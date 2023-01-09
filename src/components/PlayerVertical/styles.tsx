@@ -8,8 +8,7 @@ export const Container = styled.div`
   border-radius: 9.6px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: 10px 0px;
+  margin: 15px 0px;
 
   @media (max-width: 300px) {
     width: 70%;
