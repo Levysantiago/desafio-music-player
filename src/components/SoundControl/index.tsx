@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, PlayBackIcon, PlayForwardIcon, PlayIcon } from "./styles";
 
 export interface ISoundControlProps {
@@ -12,7 +12,18 @@ export interface ISoundControlProps {
 const SoundControl: React.FC<ISoundControlProps> = (
   props: ISoundControlProps
 ) => {
+  const playIcon = require("../../assets/play.svg").default;
+  const pauseIcon = require("../../assets/pause.svg").default;
+  const [playPauseIcon, setPlayStopIcon] = useState(playIcon);
   const { audio, playing, setPlaying, isPlaying, setIsPlaying } = props;
+
+  useEffect(() => {
+    if (isPlaying) {
+      setPlayStopIcon(pauseIcon);
+    } else {
+      setPlayStopIcon(playIcon);
+    }
+  }, [isPlaying]);
 
   const playPause = async () => {
     if (audio) {
@@ -29,15 +40,7 @@ const SoundControl: React.FC<ISoundControlProps> = (
   return (
     <Container>
       <PlayBackIcon />
-      <PlayIcon
-        src={
-          isPlaying
-            ? require("../../assets/pause.svg").default
-            : require("../../assets/play.svg").default
-        }
-        alt="Play icon"
-        onClick={playPause}
-      />
+      <PlayIcon src={playPauseIcon} alt="Play icon" onClick={playPause} />
       <PlayForwardIcon />
     </Container>
   );

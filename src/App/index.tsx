@@ -27,9 +27,17 @@ function App() {
   useEffect(() => {
     const _audio = new Audio(fixyou);
     if (_audio) {
+      _audio.onplay = () => {
+        setIsPlaying(true);
+      };
+
+      _audio.onpause = () => {
+        setIsPlaying(false);
+      };
+
       setAudio(_audio);
     }
-  }, [setAudio]);
+  }, [setAudio, setIsPlaying]);
 
   useEffect(() => {
     if (audio) {
