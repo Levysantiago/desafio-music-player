@@ -114,6 +114,8 @@ function App() {
               song,
               nextSong,
               prevSong,
+              selectSong,
+              index: 1,
             }}
           />
           <PlayerHorizontal
@@ -124,6 +126,8 @@ function App() {
               song,
               nextSong,
               prevSong,
+              selectSong,
+              index: 2,
             }}
           />
         </ContentContainer>
