@@ -7,6 +7,7 @@ export interface ISong {
   title: string;
   bandTitle: string;
   file: any;
+  imageName: string;
 }
 
 const songRepository = listToCircularList<ISong>([
@@ -14,16 +15,19 @@ const songRepository = listToCircularList<ISong>([
     bandTitle: "Maroon 5",
     title: "Memories",
     file: memories,
+    imageName: "maroon5.webp",
   },
   {
     bandTitle: "Charlie Puth",
     title: "Left and Right",
     file: leftright,
+    imageName: "charlie.jpeg",
   },
   {
     bandTitle: "Coldplay",
     title: "Adventure of a Lifetime",
     file: lifetime,
+    imageName: "coldplay.jpeg",
   },
 ]);
 

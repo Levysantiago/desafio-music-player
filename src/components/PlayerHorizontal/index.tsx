@@ -27,7 +27,7 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
     <Container>
       <ImageTitlesContainer>
         <AlbumImg
-          src={require("../../assets/default-img.png")}
+          src={require(`../../assets/band-images/${song.imageName}`)}
           alt="Album image"
         />
 

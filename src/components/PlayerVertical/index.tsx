@@ -27,7 +27,7 @@ const PlayerVertical: React.FC<IProps> = (props: IProps) => {
       {/* IMAGE */}
       <ImageContainer>
         <AlbumImg
-          src={require("../../assets/default-img.png")}
+          src={require(`../../assets/band-images/${song.imageName}`)}
           alt="Album image"
         />
       </ImageContainer>
