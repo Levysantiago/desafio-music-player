@@ -4,10 +4,12 @@ export const Container = styled.div`
   background-color: #2a2141;
   padding: 50px 38px;
   width: 200px;
+  height: 100%;
   border-radius: 9.6px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 10px 0px;
 `;
 
 export const ImageContainer = styled.div`
