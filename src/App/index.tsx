@@ -3,7 +3,7 @@ import PlayerHorizontal from "../components/PlayerHorizontal";
 import PlayerVertical from "../components/PlayerVertical";
 import { secondsToDuration } from "../helpers/seconds-to-duration";
 import { Container, ContentContainer, RootContainer } from "./styles";
-import songRepository from "../repositories/SongRepository";
+import songRepository, { ISong } from "../repositories/SongRepository";
 
 function App() {
   const [audio, setAudio] = useState<HTMLAudioElement>();
@@ -59,6 +59,12 @@ function App() {
     };
   }, [audio]);
 
+  const selectSong = (song: ISong) => {
+    reset();
+    setContinuePlaying(true);
+    setSong(song);
+  };
+
   const nextSong = () => {
     const _nextSong = songRepository.next();
     reset();
@@ -94,6 +100,7 @@ function App() {
               song,
               nextSong,
               prevSong,
+              selectSong,
             }}
           />
         </ContentContainer>

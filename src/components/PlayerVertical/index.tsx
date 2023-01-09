@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { getSongProgressPercentage } from "../../helpers/get-song-progress-percentage";
 import { secondsToDuration } from "../../helpers/seconds-to-duration";
 import { ISong } from "../../repositories/SongRepository";
+import SongsList from "../SongsList";
 import SoundControl, { ISoundControlProps } from "../SoundControl";
 import SoundProgress from "../SoundProgress";
 import {
   AlbumImg,
   BandTitle,
+  CloseIcon,
   Container,
+  HiddenContent,
   ImageContainer,
+  MusicList,
+  QueueIcon,
   SongTitle,
   SoundControlContainer,
   SoundProgressContainer,
@@ -16,11 +21,36 @@ import {
 
 interface IProps extends ISoundControlProps {
   song: ISong;
+  selectSong: (song: ISong) => void;
   audioCurrentTime: string;
 }
 
 const PlayerVertical: React.FC<IProps> = (props: IProps) => {
-  const { song, audioCurrentTime, audio } = props;
+  const { song, audioCurrentTime, audio, selectSong } = props;
+
+  const musicList = document.getElementById("music-list");
+  const hiddenContent = document.getElementById("hidden-content");
+
+  useEffect(() => {
+    closeQueue();
+  }, [song]);
+
+  const openQueue = () => {
+    if (musicList && hiddenContent) {
+      musicList.style.height = "50%";
+      musicList.style.visibility = "visible";
+      setTimeout(() => {
+        hiddenContent.style.visibility = "visible";
+      }, 300);
+    }
+  };
+
+  const closeQueue = () => {
+    if (musicList && hiddenContent) {
+      musicList.style.height = "0px";
+      hiddenContent.style.visibility = "hidden";
+    }
+  };
 
   return (
     <Container>
@@ -53,6 +83,15 @@ const PlayerVertical: React.FC<IProps> = (props: IProps) => {
           rightCounter={audio ? secondsToDuration(audio.duration) : "00:00"}
         />
       </SoundProgressContainer>
+
+      <QueueIcon onClick={openQueue} />
+      <MusicList id="music-list">
+        <HiddenContent id="hidden-content">
+          <CloseIcon onClick={closeQueue} />
+
+          <SongsList selectSong={selectSong} />
+        </HiddenContent>
+      </MusicList>
     </Container>
   );
 };
