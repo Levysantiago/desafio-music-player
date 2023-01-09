@@ -1,6 +1,7 @@
 import { listToCircularList } from "../helpers/list-to-circular-list";
-import fixyou from "../assets/songs/fixyou-coldplay.mp3";
-import wonderwall from "../assets/songs/wonderwall-oasis.mp3";
+import lifetime from "../assets/songs/lifetime-coldplay.mp3";
+import leftright from "../assets/songs/leftright-charlie.mp3";
+import memories from "../assets/songs/memories-maroon5.mp3";
 
 export interface ISong {
   title: string;
@@ -10,14 +11,19 @@ export interface ISong {
 
 const songRepository = listToCircularList<ISong>([
   {
-    bandTitle: "Coldplay",
-    title: "Fix You",
-    file: fixyou,
+    bandTitle: "Maroon 5",
+    title: "Memories",
+    file: memories,
   },
   {
-    bandTitle: "Oasis",
-    title: "Wonderwall",
-    file: wonderwall,
+    bandTitle: "Charlie Puth",
+    title: "Left and Right",
+    file: leftright,
+  },
+  {
+    bandTitle: "Coldplay",
+    title: "Adventure of a Lifetime",
+    file: lifetime,
   },
 ]);
 
