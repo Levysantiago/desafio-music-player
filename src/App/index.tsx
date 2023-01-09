@@ -67,10 +67,18 @@ function App() {
   };
 
   const prevSong = () => {
-    const _prevSong = songRepository.prev();
-    reset();
-    setContinuePlaying(true);
-    setSong(_prevSong.item);
+    if (audio) {
+      if (audio.currentTime > 2) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.play();
+      } else {
+        const _prevSong = songRepository.prev();
+        reset();
+        setContinuePlaying(true);
+        setSong(_prevSong.item);
+      }
+    }
   };
 
   return (
