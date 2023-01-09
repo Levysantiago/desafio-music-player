@@ -1,7 +1,7 @@
 import React from "react";
-import { ISong } from "../../App";
 import { getSongProgressPercentage } from "../../helpers/get-song-progress-percentage";
 import { secondsToDuration } from "../../helpers/seconds-to-duration";
+import { ISong } from "../../repositories/SongRepository";
 import SoundControl, { ISoundControlProps } from "../SoundControl";
 import SoundProgress from "../SoundProgress";
 import {

@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
 import PlayerHorizontal from "../components/PlayerHorizontal";
 import PlayerVertical from "../components/PlayerVertical";
-import fixyou from "../assets/songs/fixyou-coldplay.mp3";
 import { secondsToDuration } from "../helpers/seconds-to-duration";
 import { Container, ContentContainer, RootContainer } from "./styles";
-
-export interface ISong {
-  title: string;
-  bandTitle: string;
-  audioPath: string;
-}
+import songRepository from "../repositories/SongRepository";
 
 function App() {
-  const [songs] = useState([
-    {
-      bandTitle: "Coldplay",
-      title: "Fix You",
-      audioPath: "./assets/songs/fixyou-coldplay.mp3",
-    },
-  ]);
   const [audio, setAudio] = useState<HTMLAudioElement>();
   const [audioCurrentTime, setAudioCurrentTime] = useState("00:00");
-  const [playing, setPlaying] = useState(0);
+  const [song, setSong] = useState(songRepository.it(0));
   const [isPlaying, setIsPlaying] = useState(false);
+  const [continuePlaying, setContinuePlaying] = useState(false);
+
+  const reset = () => {
+    if (audio) {
+      audio.pause();
+      audio.currentTime = 0;
+      setAudioCurrentTime("00:00");
+    }
+  };
+
+  const updateAudioCurrentTime = () => {
+    if (audio) {
+      setAudioCurrentTime(secondsToDuration(audio.currentTime));
+    }
+  };
 
   useEffect(() => {
-    const _audio = new Audio(fixyou);
+    const _audio = new Audio(song.file);
     if (_audio) {
       _audio.onplay = () => {
         setIsPlaying(true);
@@ -36,16 +38,37 @@ function App() {
       };
 
       setAudio(_audio);
+
+      if (continuePlaying) {
+        _audio.play();
+        setContinuePlaying(false);
+      }
     }
-  }, [setAudio, setIsPlaying]);
+  }, [setAudio, setIsPlaying, song]);
 
   useEffect(() => {
     if (audio) {
-      audio.addEventListener("timeupdate", () => {
-        setAudioCurrentTime(secondsToDuration(audio.currentTime));
-      });
+      audio.addEventListener("timeupdate", updateAudioCurrentTime);
     }
+
+    return () => {
+      audio?.removeEventListener("timeupdate", updateAudioCurrentTime);
+    };
   }, [audio]);
+
+  const nextSong = () => {
+    const _nextSong = songRepository.next();
+    reset();
+    setContinuePlaying(true);
+    setSong(_nextSong.item);
+  };
+
+  const prevSong = () => {
+    const _prevSong = songRepository.prev();
+    reset();
+    setContinuePlaying(true);
+    setSong(_prevSong.item);
+  };
 
   return (
     <RootContainer>
@@ -54,12 +77,12 @@ function App() {
           <PlayerVertical
             {...{
               audio,
-              playing,
-              setPlaying,
               isPlaying,
               setIsPlaying,
               audioCurrentTime,
-              song: songs[playing],
+              song,
+              nextSong,
+              prevSong,
             }}
           />
         </ContentContainer>
@@ -67,22 +90,22 @@ function App() {
           <PlayerHorizontal
             {...{
               audio,
-              playing,
-              setPlaying,
               isPlaying,
               setIsPlaying,
               audioCurrentTime,
-              song: songs[playing],
+              song,
+              nextSong,
+              prevSong,
             }}
           />
           <PlayerHorizontal
             {...{
               audio,
-              playing,
-              setPlaying,
               isPlaying,
               setIsPlaying,
-              song: songs[playing],
+              song,
+              nextSong,
+              prevSong,
             }}
           />
         </ContentContainer>

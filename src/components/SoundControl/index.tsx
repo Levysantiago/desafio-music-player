@@ -3,8 +3,8 @@ import { Container, PlayBackIcon, PlayForwardIcon, PlayIcon } from "./styles";
 
 export interface ISoundControlProps {
   audio?: HTMLAudioElement;
-  playing: number;
-  setPlaying: (id: number) => void;
+  nextSong: () => void;
+  prevSong: () => void;
   isPlaying: boolean;
   setIsPlaying: (isPlaying: boolean) => void;
 }
@@ -15,7 +15,7 @@ const SoundControl: React.FC<ISoundControlProps> = (
   const playIcon = require("../../assets/play.svg").default;
   const pauseIcon = require("../../assets/pause.svg").default;
   const [playPauseIcon, setPlayStopIcon] = useState(playIcon);
-  const { audio, playing, setPlaying, isPlaying, setIsPlaying } = props;
+  const { audio, isPlaying, setIsPlaying, nextSong, prevSong } = props;
 
   useEffect(() => {
     if (isPlaying) {
@@ -29,19 +29,17 @@ const SoundControl: React.FC<ISoundControlProps> = (
     if (audio) {
       if (isPlaying) {
         await audio.pause();
-        setIsPlaying(false);
       } else {
         await audio.play();
-        setIsPlaying(true);
       }
     }
   };
 
   return (
     <Container>
-      <PlayBackIcon />
+      <PlayBackIcon onClick={prevSong} />
       <PlayIcon src={playPauseIcon} alt="Play icon" onClick={playPause} />
-      <PlayForwardIcon />
+      <PlayForwardIcon onClick={nextSong} />
     </Container>
   );
 };
