@@ -25,6 +25,7 @@ export const ImageContainer = styled.div`
 export const AlbumImg = styled.img`
   width: 190px;
   height: 190px;
+  border-radius: 6px;
 `;
 
 export const SongTitle = styled.span`

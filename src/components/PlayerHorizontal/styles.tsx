@@ -34,6 +34,7 @@ export const TitlesContainer = styled.div`
 export const AlbumImg = styled.img`
   width: 80px;
   height: 80px;
+  border-radius: 6px;
 
   @media (max-width: 300px) {
     width: 50px;
