@@ -1,5 +1,5 @@
 import { listToCircularList } from "../helpers/list-to-circular-list";
-import lifetime from "../assets/songs/lifetime-coldplay.mp3";
+import paradise from "../assets/songs/paradise-coldplay.mp3";
 import leftright from "../assets/songs/leftright-charlie.mp3";
 import memories from "../assets/songs/memories-maroon5.mp3";
 
@@ -29,8 +29,8 @@ const songRepository = listToCircularList<ISong>([
   {
     id: 3,
     bandTitle: "Coldplay",
-    title: "Adventure of a Lifetime",
-    file: lifetime,
+    title: "Paradise",
+    file: paradise,
     imageName: "coldplay.jpeg",
   },
 ]);

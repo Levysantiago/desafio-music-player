@@ -65,7 +65,7 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
         {/* TITLES */}
         <TitlesContainer>
           <SongTitle>{song.title}</SongTitle>
-          <BandTitle>{`Banda ${song.bandTitle}`}</BandTitle>
+          <BandTitle>{`${song.bandTitle}`}</BandTitle>
         </TitlesContainer>
       </ImageTitlesContainer>
 

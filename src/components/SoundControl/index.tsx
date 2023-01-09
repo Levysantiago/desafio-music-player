@@ -15,7 +15,7 @@ const SoundControl: React.FC<ISoundControlProps> = (
   const playIcon = require("../../assets/play.svg").default;
   const pauseIcon = require("../../assets/pause.svg").default;
   const [playPauseIcon, setPlayStopIcon] = useState(playIcon);
-  const { audio, isPlaying, setIsPlaying, nextSong, prevSong } = props;
+  const { audio, isPlaying, nextSong, prevSong } = props;
 
   useEffect(() => {
     if (isPlaying) {

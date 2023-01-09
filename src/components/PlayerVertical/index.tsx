@@ -64,7 +64,7 @@ const PlayerVertical: React.FC<IProps> = (props: IProps) => {
 
       {/* TITLES */}
       <SongTitle>{song.title}</SongTitle>
-      <BandTitle>{`Banda ${song.bandTitle}`}</BandTitle>
+      <BandTitle>{`${song.bandTitle}`}</BandTitle>
 
       <SoundControlContainer>
         {/* SOUND CONTROL */}
