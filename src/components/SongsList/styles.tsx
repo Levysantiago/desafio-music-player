@@ -14,6 +14,7 @@ export const ItemsContainer = styled.div`
   margin-top: 5px;
   width: 100%;
   cursor: pointer;
+  position: relative;
 
   &:hover {
     background-color: #1a122c;
@@ -33,18 +34,31 @@ export const AlbumImg = styled.img`
   margin: 5px 15px;
 `;
 
-export const SongTitle = styled.span`
+export const SongTitle = styled.span(
+  (props: { selected: boolean }) => `
   font-family: "Roboto-Regular";
   font-size: 16px;
-  color: #e1e1e6;
+  color: ${props.selected ? "#9B74FE" : "#e1e1e6"};
 
   @media (max-width: 300px) {
     font-size: 14px;
   }
-`;
+`
+);
 
 export const BandTitle = styled.span`
   font-family: "Roboto-Regular";
   font-size: 12px;
   color: #a5a2b0;
+`;
+
+export const PlayingIcon = styled.img.attrs({
+  src: require("../../assets/playing.svg").default,
+  alt: "Play icon",
+})`
+  position: absolute;
+  right: 15px;
+  top: 35%;
+  width: 15px;
+  height: 15px;
 `;

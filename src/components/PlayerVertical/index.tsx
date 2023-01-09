@@ -89,7 +89,7 @@ const PlayerVertical: React.FC<IProps> = (props: IProps) => {
         <HiddenContent id="hidden-content">
           <CloseIcon onClick={closeQueue} />
 
-          <SongsList selectSong={selectSong} />
+          <SongsList selectSong={selectSong} song={song} />
         </HiddenContent>
       </MusicList>
     </Container>

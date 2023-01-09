@@ -94,7 +94,7 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
         <HiddenContent id={`hidden-content${index}`}>
           <CloseIcon onClick={closeQueue} />
 
-          <SongsList selectSong={selectSong} />
+          <SongsList selectSong={selectSong} song={song} />
         </HiddenContent>
       </MusicList>
     </Container>

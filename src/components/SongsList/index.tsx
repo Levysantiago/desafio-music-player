@@ -5,33 +5,38 @@ import {
   BandTitle,
   Container,
   ItemsContainer,
+  PlayingIcon,
   SongTitle,
   TitlesContainer,
 } from "./styles";
 
 interface IProps {
   selectSong: (song: ISong) => void;
+  song: ISong;
 }
 
 const SongsList: React.FC<IProps> = (props: IProps) => {
-  const { selectSong } = props;
+  const { selectSong, song } = props;
 
   return (
     <Container>
-      {songRepository.list.map((song, key) => {
+      {songRepository.list.map((songItem, key) => {
         return (
           <ItemsContainer
             key={key}
             onClick={() => {
-              selectSong(song);
+              selectSong(songItem);
             }}
           >
             <AlbumImg
-              src={require(`../../assets/band-images/${song.imageName}`)}
+              src={require(`../../assets/band-images/${songItem.imageName}`)}
             />
             <TitlesContainer>
-              <SongTitle>{song.title}</SongTitle>
-              <BandTitle>{song.bandTitle}</BandTitle>
+              <SongTitle selected={songItem.id === song.id}>
+                {songItem.title}
+              </SongTitle>
+              <BandTitle>{songItem.bandTitle}</BandTitle>
+              {songItem.id === song.id ? <PlayingIcon /> : null}
             </TitlesContainer>
           </ItemsContainer>
         );
