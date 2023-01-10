@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PlayerHorizontal from "../components/PlayerHorizontal";
 import PlayerVertical from "../components/PlayerVertical";
 import { secondsToDuration } from "../helpers/seconds-to-duration";
@@ -12,22 +12,29 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [continuePlaying, setContinuePlaying] = useState(false);
 
-  const reset = () => {
+  const reset = useCallback(() => {
     if (audio) {
       audio.pause();
       audio.currentTime = 0;
       setAudioCurrentTime("00:00");
     }
-  };
+  }, [audio, setAudioCurrentTime]);
 
-  const updateAudioCurrentTime = () => {
+  const nextSong = useCallback(() => {
+    const _nextSong = songRepository.next();
+    reset();
+    setContinuePlaying(true);
+    setSong(_nextSong.item);
+  }, [reset, setContinuePlaying, setSong]);
+
+  const updateAudioCurrentTime = useCallback(() => {
     if (audio) {
       setAudioCurrentTime(secondsToDuration(audio.currentTime));
       if (audio.currentTime === audio.duration) {
         nextSong();
       }
     }
-  };
+  }, [audio, nextSong]);
 
   useEffect(() => {
     const _audio = new Audio(song.file);
@@ -47,7 +54,8 @@ function App() {
         setContinuePlaying(false);
       }
     }
-  }, [setAudio, setIsPlaying, song]);
+    // eslint-disable-next-line
+  }, [setAudio, setIsPlaying, setContinuePlaying, song]);
 
   useEffect(() => {
     if (audio) {
@@ -57,19 +65,12 @@ function App() {
     return () => {
       audio?.removeEventListener("timeupdate", updateAudioCurrentTime);
     };
-  }, [audio]);
+  }, [audio, updateAudioCurrentTime]);
 
   const selectSong = (song: ISong) => {
     reset();
     setContinuePlaying(true);
     setSong(song);
-  };
-
-  const nextSong = () => {
-    const _nextSong = songRepository.next();
-    reset();
-    setContinuePlaying(true);
-    setSong(_nextSong.item);
   };
 
   const prevSong = () => {
