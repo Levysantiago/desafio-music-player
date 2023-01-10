@@ -69,6 +69,7 @@ function App() {
 
   const selectSong = (song: ISong) => {
     reset();
+    songRepository.currentIndex = song.id;
     setContinuePlaying(true);
     setSong(song);
   };

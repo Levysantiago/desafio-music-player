@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Levy's Player
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is the result of a challenge released by [Rocketseat](https://www.rocketseat.com.br/). It is a music player. This specific player allows you to play, pause, move to the next song, go back to the previous song, skip the song by clicking on the progress bar and select a song from the queue.
 
 ## Available Scripts
 
