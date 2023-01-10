@@ -12,6 +12,7 @@ export const BaseBar = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  cursor: pointer;
 `;
 
 export const InsideBar = styled.div`

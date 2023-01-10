@@ -23,7 +23,7 @@ const SoundControl: React.FC<ISoundControlProps> = (
     } else {
       setPlayStopIcon(playIcon);
     }
-  }, [isPlaying]);
+  }, [isPlaying, setPlayStopIcon, pauseIcon, playIcon]);
 
   const playPause = async () => {
     if (audio) {

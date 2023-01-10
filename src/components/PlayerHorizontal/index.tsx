@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { getSongProgressPercentage } from "../../helpers/get-song-progress-percentage";
 import { secondsToDuration } from "../../helpers/seconds-to-duration";
 import { ISong } from "../../repositories/SongRepository";
@@ -33,10 +33,6 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
   const musicList = document.getElementById(`music-list${index}`);
   const hiddenContent = document.getElementById(`hidden-content${index}`);
 
-  useEffect(() => {
-    closeQueue();
-  }, [song]);
-
   const openQueue = () => {
     if (musicList && hiddenContent) {
       musicList.style.height = "100%";
@@ -47,12 +43,16 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
     }
   };
 
-  const closeQueue = () => {
+  const closeQueue = useCallback(() => {
     if (musicList && hiddenContent) {
       musicList.style.height = "0px";
       hiddenContent.style.visibility = "hidden";
     }
-  };
+  }, [musicList, hiddenContent]);
+
+  useEffect(() => {
+    closeQueue();
+  }, [song, closeQueue]);
 
   return (
     <Container>
@@ -78,6 +78,7 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
       {audioCurrentTime ? (
         <SoundProgressContainer>
           <SoundProgress
+            index={`horizontal-${index}`}
             barWidthPercent={
               audio
                 ? getSongProgressPercentage(audio.currentTime, audio.duration)
@@ -85,6 +86,10 @@ const PlayerHorizontal: React.FC<IProps> = (props: IProps) => {
             }
             leftCounter={audioCurrentTime}
             rightCounter={audio ? secondsToDuration(audio.duration) : "00:00"}
+            advanceProgress={(advancedPercentage: number) => {
+              if (audio)
+                audio.currentTime = audio.duration * advancedPercentage;
+            }}
           />
         </SoundProgressContainer>
       ) : null}
